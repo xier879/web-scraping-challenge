@@ -10,23 +10,17 @@
 </head>
 
 <body>
-    <div class="container text-center">
-        <h1 class="jumbotron">Mission to Mars</h1>
-        <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
-        <div>
-        {% for item in inventory %}
-        <div class="col-lg-4">
-              <div class="card" style="width: 20rem;">
-                  <div class="card-body">
-                    <h4 class="card-title">featured_image</h4>
-                    <p class="card-text">{{mars.featured_image_url}}</p>
-                  </div>
-                </div>
-            </div>
-            {% endfor %}
-
+  <div class="container">
+    <div class="jumbotron text-center">
+      <h1>Mission to Mars</h1>
+      <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">MARS</a></p>
+    </div>
+    <div class="row" id="mars-data">
+      <div class="col-md-12">
+        <h4 class="heading">{{scrape_dic.Mars_news}}</h4>
       </div>
     </div>
-  </body>
+  </div>
+</body>
 
 </html>
