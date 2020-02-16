@@ -12,13 +12,27 @@ import lxml.html as lh
 import pandas as pd
 # https://splinter.readthedocs.io/en/latest/drivers/chrome.html
 
-
-executable_path = {'executable_path': '../chromedriver'}
-browser = Browser('chrome', **executable_path, headless=False)
+def init_browser():
+    executable_path = {'executable_path': '../chromedriver'}
+    return Browser('chrome', **executable_path, headless=False)
 
 #web scraping preparation end
 #==============================
+def scrape():
+    browser = init_browser()
+    scrape_dic={}
+    url = 'https://mars.nasa.gov/news/'
+    browser.visit(url)
+    html=browser.html
+    soup = bs(html,"html.parser")
 
+    #NASA Mars News
+    scrape_dic['Mars_news']=MarsNews()
+    scrape_dic['featured_image_url']=MarsImage()
+    scrape_dic['mars_weather']=MarsWeather()
+    scrape_dic['mars_facts']=MarsFacts()
+    scrape_dic['mars_hemisphere']=MarsHemisphere()
+    return scrape_dic
 
 def MarsNews():
     url = 'https://mars.nasa.gov/news/'
@@ -153,15 +167,7 @@ def MarsHemisphere():
     #print(scrape_dic)
     return hemisphere_list
 
-def scrape():
-    scrape_dic={}
-    #NASA Mars News
-    scrape_dic['Mars_news']=MarsNews()
-    scrape_dic['featured_image_url']=MarsImage()
-    scrape_dic['mars_weather']=MarsWeather()
-    scrape_dic['mars_facts']=MarsFacts()
-    scrape_dic['mars_hemisphere']=MarsHemisphere()
-    return scrape_dic
+
     
 #==============
 
